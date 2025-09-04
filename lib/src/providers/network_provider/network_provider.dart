@@ -20,6 +20,9 @@ class NetworkProvider with ChangeNotifier {
   /// Banner visibility timer
   Timer? hideBannerTimer;
 
+  /// This function used for after internet is back recall the API's
+  late void Function() onApiCall;
+
   void _initState() {
     checkInitialConnection();
     streamSubscription = Connectivity().onConnectivityChanged.listen(
@@ -34,9 +37,9 @@ class NetworkProvider with ChangeNotifier {
   }
 
   void updateConnectionStatus(
-      List<ConnectivityResult> result, {
-        bool initial = false,
-      }) {
+    List<ConnectivityResult> result, {
+    bool initial = false,
+  }) {
     final hasInternet = result.first != ConnectivityResult.none;
 
     if (initial) {
@@ -59,6 +62,7 @@ class NetworkProvider with ChangeNotifier {
         showBanner = true;
         hideBannerTimer = Timer(const Duration(seconds: 2), () {
           showBanner = false;
+          onApiCall();
           notifyListeners();
         });
       }
