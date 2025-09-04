@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_provider/src/constants/app_router_name.dart';
+import 'package:flutter_provider/src/providers/network_provider/connection_status_banner.dart';
 import 'package:flutter_provider/src/providers/theme_provider/theme_provider.dart';
 import 'package:flutter_provider/src/utils/storage_hepler/storage_helper.dart';
 import 'package:flutter_provider/theme/app_theme.dart';
@@ -51,6 +52,18 @@ class MyApp extends StatelessWidget {
             darkTheme: AppTheme.darkTheme,
             initialRoute: splash_screen,
             routes: Routes.routes,
+            builder: (context, child) {
+              return Column(
+                children: [
+                  Expanded(child: child!),
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.only(bottom: 0),
+                    child: ConnectionStatusBanner(),
+                  ),
+                ],
+              );
+            },
           );
         },
       ),
