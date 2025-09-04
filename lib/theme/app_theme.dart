@@ -24,13 +24,13 @@ class AppTheme {
   static const Color _darkOnPrimaryColor = Colors.white;
 
   static final ThemeData lightTheme = ThemeData(
+    primaryColorLight: _lightOnPrimaryColor,
+    primaryColorDark: _lightPrimaryVariantColor,
     highlightColor: skeletonLoaderColorLight,
     scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1),
     appBarTheme: AppBarTheme(
-      elevation: 2,
       actionsIconTheme: const IconThemeData(color: AppTheme.appbarTextColor),
       backgroundColor: primaryColor,
-      shadowColor: const Color(0xFFBDBDBD),
       titleTextStyle: TextStyle(
         color: AppTheme.appbarTextColor,
         fontSize: 16,
@@ -152,10 +152,12 @@ class AppTheme {
       ),
     ),
     dividerTheme: const DividerThemeData(color: Colors.black12),
-    bottomAppBarTheme: const BottomAppBarTheme(color: Color(0xFF2A65B3)),
+    bottomAppBarTheme: const BottomAppBarThemeData(color: Color(0xFF2A65B3)),
   );
 
   static final ThemeData darkTheme = ThemeData(
+    primaryColorLight: _darkOnPrimaryColor,
+    primaryColorDark: _darkPrimaryVariantColor,
     scaffoldBackgroundColor: _darkPrimaryVariantColor,
     highlightColor: skeletonLoaderColorDark,
     appBarTheme: AppBarTheme(
@@ -275,7 +277,7 @@ class AppTheme {
       ),
     ),
     dividerTheme: const DividerThemeData(color: Colors.grey),
-    bottomAppBarTheme: const BottomAppBarTheme(color: _darkOnPrimaryColor),
+    bottomAppBarTheme: const BottomAppBarThemeData(color: _darkOnPrimaryColor),
   );
 
   getColor(double rating) {
